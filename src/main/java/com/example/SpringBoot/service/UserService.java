@@ -2,6 +2,7 @@ package com.example.SpringBoot.service;
 
 import com.example.SpringBoot.model.User;
 import com.example.SpringBoot.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,19 +17,21 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User findById(Integer id){
+    public User findById(Integer id) {
         return userRepository.getOne(id);
     }
 
-    public List<User> findAll(){
+    public List<User> findAll() {
         return userRepository.findAll();
     }
 
-    public User saveUser(User user){
+    @Transactional
+    public User saveUser(User user) {
         return userRepository.save(user);
     }
 
-    public void deleteById(Integer id){
+    @Transactional
+    public void deleteById(Integer id) {
         userRepository.deleteById(id);
     }
 }
