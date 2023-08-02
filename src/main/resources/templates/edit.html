@@ -1,20 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<meta charset="UTF-8">
-<title>Create user</title>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit user</title>
 </head>
 <body>
-<form action="#" th:action="@{/edit}" th:object="${user}" method="post">
-    <label for="id">ID</label>
-    <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+<form th:method="PATCH" th:action="@{/{id}(id=${user.getId()})}" th:object="${user}">
+    <label for="name">Enter name: </label>
+    <input type="text" th:field="*{name}" id="name">
+    <label for="surname">Enter surname: </label>
+    <input type="text" th:field="*{surname}" id="surname">
     <br/>
-    <label for="name">name</label>
-    <input type="text" th:field="*{name}" id="name" placeholder="name">
-    <br/>
-    <label for="surname">surname</label>
-    <input type="text" th:field="*{surname}" id="surname" placeholder="surname">
-    <br/>
-    <input type="submit" value="Update User">
+    <input type="submit" value="Update!"/>
 </form>
+
 </body>
 </html>

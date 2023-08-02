@@ -1,35 +1,38 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="eng">
-
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
     <meta charset="UTF-8">
-    <title>Users</title>
+    <title></title>
 </head>
 <body>
-<div th:switch="${users}">
-    <h2 th:case="null">No users found!</h2>
-    <div th:case="*">
-        <h2>Users</h2>
-        <table>
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>name</th>
-                <th>surname</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="user : ${users}">
-                <td th:text="${user.id}"></td>
-                <td th:text="${user.name}"></td>
-                <td th:text="${user.surname}"></td>
-                <td><a th:href="@{edit/{id}(id=${user.id})}">Edit</a></td>
-                <td><a th:href="@{delete/{id}(id=${user.id})}">Delete</a></td>
-            </tr>
-            </tbody>
-        </table>
+<table>
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>surname</th>
+
+    </tr>
+    <div th:each ="user : ${users}">
+        <tr>
+            <td th:text="${user.getId()}">VALUE</td>
+            <td th:text="${user.getName()}">VALUE</td>
+            <td th:text="${user.getSurname()}">VALUE</td>
+
+            <td>
+                <a th:href="@{/{id}/edit(id=${user.getId()})}">edit</a>
+                <form th:method="DELETE" th:action="@{/{id}(id=${user.getId()})}">
+                    <input type="submit" value="Delete"/>
+                </form>
+            </td>
+        </tr>
     </div>
-    <p><a href="/new">Create user</a></p>
-</div>
+</table>
+
+
+<br/>
+<hr/>
+
+<a href="/new">Create new person</a>
+
 </body>
 </html>
